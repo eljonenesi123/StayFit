@@ -10,7 +10,7 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   gap: var(--space-3);
-  padding: var(--space-2) 12%;
+  padding: var(--space-2) 5%;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -20,16 +20,18 @@
 }
 
 .goal-card {
-  flex: 0 0 76%;
+  flex: 0 0 88%;
   scroll-snap-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   position: relative;
-  min-height: 380px;
-  padding: var(--space-6) var(--space-4) var(--space-5);
-  border: none;
+  height: min(68vh, 600px);
+  min-height: 420px;
+  padding: var(--space-6) var(--space-5) var(--space-6);
+  border: 3px solid transparent;
   border-radius: var(--radius-lg);
   /* Hardcoded, not var(--accent) — this gradient's own look is intentionally kept
      fixed even as the flat accent color used elsewhere in the app changes. */
@@ -37,12 +39,31 @@
   cursor: pointer;
   opacity: 0.55;
   transform: scale(0.92);
-  transition: opacity var(--dur-base) var(--ease-standard), transform var(--dur-base) var(--ease-standard);
+  transition: opacity var(--dur-base) var(--ease-standard), transform var(--dur-base) var(--ease-standard),
+    border-color var(--dur-base) var(--ease-standard);
 }
 
 .goal-card[data-active="true"] {
   opacity: 1;
   transform: scale(1);
+}
+
+.goal-card[data-selected="true"] {
+  border-color: var(--accent);
+}
+
+.goal-card__check {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .goal-card__flair {
@@ -122,4 +143,11 @@
 .goal-carousel__dot[data-active="true"] {
   background: var(--accent);
   width: 20px;
+}
+
+.goal-carousel__hint {
+  text-align: center;
+  color: var(--muted);
+  font-size: var(--step-xs);
+  margin: var(--space-3) 0 0;
 }

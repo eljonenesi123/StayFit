@@ -60,7 +60,8 @@ export default function OnboardingPage() {
   const current = STEPS[step];
   const StepFields = current.render;
   const isLastStep = step === STEPS.length - 1;
-  const nextLabel = submitting ? "Saving…" : isLastStep ? "Finish" : "Next";
+  const nextLabel = submitting ? "Saving…" : isLastStep ? "Continue" : "Next";
+  const nextDisabled = submitting || (isLastStep && form.goals.length === 0);
 
   return (
     <div className="onboarding">
@@ -116,7 +117,7 @@ export default function OnboardingPage() {
         <StepFields form={form} onChange={patchForm} />
       </div>
 
-      <button type="button" className="btn btn-primary onboarding__next" onClick={handleNext} disabled={submitting}>
+      <button type="button" className="btn btn-primary onboarding__next" onClick={handleNext} disabled={nextDisabled}>
         {nextLabel}
         {!submitting && !isLastStep && <ChevronRightIcon width={18} height={18} />}
       </button>

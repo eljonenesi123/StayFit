@@ -15,7 +15,10 @@ export interface ProfileFormState {
   /** Onboarding collects a date instead of a raw age — kept here (not derived-only) so it survives step back/forward navigation. Converted to `age` on change; never sent to Supabase itself (no matching column). */
   dateOfBirth: string;
   gender: Gender | null;
+  /** Single-select — used by the standalone ProfilePage edit form and by profileApi (the Supabase "profiles" table only has one `goal text` column). */
   goal: Goal | null;
+  /** Multi-select — used by the onboarding goal carousel only. Kept in sync with `goal` (set to `goals[0] ?? null`) so saving still writes something to that one column without needing a schema change. */
+  goals: Goal[];
 }
 
 /** Row shape in the Supabase "profiles" table — always normalized to cm/kg. */
@@ -53,4 +56,5 @@ export const EMPTY_PROFILE_FORM: ProfileFormState = {
   dateOfBirth: "",
   gender: null,
   goal: null,
+  goals: [],
 };

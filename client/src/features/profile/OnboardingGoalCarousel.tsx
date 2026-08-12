@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { GOAL_OPTIONS, type ProfileFormState } from "./types";
-import { ChevronLeftIcon, ChevronRightIcon } from "../../components/icons";
+import { useRef, useState } from "react";
+import { GOAL_OPTIONS, type Goal, type ProfileFormState } from "./types";
+import { ChevronLeftIcon, ChevronRightIcon, CheckIcon } from "../../components/icons";
 import buildMuscle from "../../assets/illustrations/goal-build-muscle.svg";
 import stayFit from "../../assets/illustrations/goal-stay-fit.svg";
 import improveShape from "../../assets/illustrations/goal-improve-shape.svg";
@@ -32,23 +32,7 @@ function SketchFlair() {
 
 export default function OnboardingGoalCarousel({ form, onChange }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const initialIndex = Math.max(
-    0,
-    GOAL_OPTIONS.findIndex((o) => o.value === form.goal)
-  );
-  const [activeIndex, setActiveIndex] = useState(initialIndex);
-
-  // Land on the right card immediately (no smooth-scroll animation on mount), and make sure
-  // `form.goal` reflects whichever card is centered even if the user never touches the carousel.
-  useEffect(() => {
-    const track = trackRef.current;
-    const slide = track?.children[initialIndex] as HTMLElement | undefined;
-    slide?.scrollIntoView({ behavior: "instant" as ScrollBehavior, inline: "center", block: "nearest" });
-    onChange({ goal: GOAL_OPTIONS[initialIndex].value });
-    // Only ever run once on mount — this is deliberately not re-synced to `form.goal` afterwards,
-    // since the carousel itself is the source of truth for selection once mounted.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const handleScroll = () => {
     const track = trackRef.current;
@@ -65,10 +49,7 @@ export default function OnboardingGoalCarousel({ form, onChange }: Props) {
         closestIndex = i;
       }
     });
-    if (closestIndex !== activeIndex) {
-      setActiveIndex(closestIndex);
-      onChange({ goal: GOAL_OPTIONS[closestIndex].value });
-    }
+    if (closestIndex !== activeIndex) setActiveIndex(closestIndex);
   };
 
   const goTo = (index: number) => {
@@ -77,23 +58,47 @@ export default function OnboardingGoalCarousel({ form, onChange }: Props) {
     slide?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   };
 
+  const toggleGoal = (value: Goal) => {
+    const nextGoals = form.goals.includes(value) ? form.goals.filter((g) => g !== value) : [...form.goals, value];
+    // `goal` (singular) still drives the Supabase save — the "profiles" table has only one
+    // `goal text` column, so the first pick stands in for the whole multi-select set there.
+    onChange({ goals: nextGoals, goal: nextGoals[0] ?? null });
+  };
+
+  const handleCardClick = (index: number) => {
+    if (index === activeIndex) {
+      toggleGoal(GOAL_OPTIONS[index].value);
+    } else {
+      goTo(index);
+    }
+  };
+
   return (
     <div className="goal-carousel">
       <div className="goal-carousel__track" ref={trackRef} onScroll={handleScroll}>
-        {GOAL_OPTIONS.map((opt, i) => (
-          <button
-            key={opt.value}
-            type="button"
-            className="goal-card"
-            data-active={i === activeIndex}
-            onClick={() => goTo(i)}
-          >
-            <SketchFlair />
-            <img className="goal-card__illustration" src={ILLUSTRATIONS[opt.value]} alt="" />
-            <span className="goal-card__title">{opt.label}</span>
-            <span className="goal-card__desc">{opt.description}</span>
-          </button>
-        ))}
+        {GOAL_OPTIONS.map((opt, i) => {
+          const selected = form.goals.includes(opt.value);
+          return (
+            <button
+              key={opt.value}
+              type="button"
+              className="goal-card"
+              data-active={i === activeIndex}
+              data-selected={selected}
+              onClick={() => handleCardClick(i)}
+            >
+              {selected && (
+                <span className="goal-card__check">
+                  <CheckIcon width={16} height={16} />
+                </span>
+              )}
+              <SketchFlair />
+              <img className="goal-card__illustration" src={ILLUSTRATIONS[opt.value]} alt="" />
+              <span className="goal-card__title">{opt.label}</span>
+              <span className="goal-card__desc">{opt.description}</span>
+            </button>
+          );
+        })}
       </div>
 
       <div className="goal-carousel__controls">
@@ -130,6 +135,8 @@ export default function OnboardingGoalCarousel({ form, onChange }: Props) {
           <ChevronRightIcon width={18} height={18} />
         </button>
       </div>
+
+      <p className="goal-carousel__hint">Tap the centered card to select it — pick as many as you like.</p>
     </div>
   );
 }
