@@ -1,0 +1,18 @@
+.profile-page__header {
+  margin-top: var(--space-6);
+}
+
+.profile-page__saved {
+  background: var(--accent-tint);
+  color: var(--accent-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--step-sm);
+  font-weight: 600;
+}
+
+.profile-page__save {
+  width: 100%;
+  min-height: 56px;
+  font-size: var(--step-md);
+}
