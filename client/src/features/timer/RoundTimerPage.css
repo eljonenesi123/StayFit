@@ -1,0 +1,18 @@
+.round-timer-start-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
+  padding: var(--space-3) var(--space-4);
+  background: linear-gradient(to top, var(--paper) 60%, rgba(255, 255, 255, 0));
+  display: flex;
+  justify-content: center;
+  z-index: 30;
+}
+
+.round-timer-start-bar .btn {
+  width: 100%;
+  max-width: var(--content-max);
+  min-height: 58px;
+  font-size: var(--step-md);
+}

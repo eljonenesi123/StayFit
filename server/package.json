@@ -1,0 +1,21 @@
+{
+  "name": "stayfit-server",
+  "version": "1.0.0",
+  "description": "StayFit backend — proxies vision/LLM calls to the Anthropic API so keys never reach the client.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.116.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

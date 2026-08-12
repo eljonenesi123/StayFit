@@ -1,0 +1,68 @@
+.weight-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-1);
+}
+
+.weight-card__delta {
+  font-size: var(--step-xs);
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.weight-card__delta--down {
+  color: var(--accent-strong);
+}
+
+.weight-card__delta--up {
+  color: var(--rest);
+}
+
+.weight-card__value {
+  font-family: var(--font-numeric);
+  font-size: var(--step-2xl);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.weight-card__chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 64px;
+}
+
+.weight-card__bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 6px;
+}
+
+.weight-card__bar {
+  width: 100%;
+  max-width: 18px;
+  background: var(--line-strong);
+  border-radius: 4px 4px 2px 2px;
+  transition: height var(--dur-base) var(--ease-standard);
+}
+
+.weight-card__bar--current {
+  background: var(--accent);
+}
+
+.weight-card__bar-label {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.weight-card__note {
+  font-size: var(--step-xs);
+  color: var(--muted);
+  margin: var(--space-3) 0 0;
+}

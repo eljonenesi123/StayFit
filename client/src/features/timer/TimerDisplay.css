@@ -1,0 +1,143 @@
+.timer-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-4) 0 var(--space-2);
+  transition: background-color var(--dur-base) var(--ease-standard);
+}
+
+.timer-display__top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 300px;
+}
+
+.timer-display__wakelock {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--step-xs);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.timer-display__ring-wrap {
+  position: relative;
+  width: min(78vw, 300px);
+  height: min(78vw, 300px);
+}
+
+.timer-display__ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-display__ring-track {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 10;
+}
+
+.timer-display__ring-progress {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset var(--dur-base) linear, stroke var(--dur-base) var(--ease-standard);
+}
+
+.timer-display--rest .timer-display__ring-progress {
+  stroke: var(--rest);
+}
+
+.timer-display__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  text-align: center;
+  padding: 0 var(--space-4);
+}
+
+.timer-display__segment-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: var(--step-sm);
+  color: var(--accent-strong);
+}
+
+.timer-display__segment-label--rest {
+  color: var(--rest);
+}
+
+.timer-display__clock {
+  font-family: var(--font-numeric);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(3.2rem, 18vw, 4.6rem);
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.timer-display__clock--small {
+  font-size: var(--step-xl);
+  color: var(--muted);
+}
+
+.timer-display__next {
+  font-size: var(--step-sm);
+  color: var(--muted);
+  font-weight: 500;
+  margin-top: var(--space-2);
+}
+
+.timer-display__done-label {
+  font-family: var(--font-display);
+  font-size: var(--step-xl);
+  font-weight: 600;
+  color: var(--accent-strong);
+}
+
+.timer-display__meta {
+  color: var(--muted);
+  font-size: var(--step-sm);
+  font-weight: 600;
+}
+
+.timer-display__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 340px;
+}
+
+.timer-display__primary {
+  flex: 1;
+  min-height: 60px;
+  font-size: var(--step-md);
+}
+
+.timer-display__reset,
+.timer-display__skip {
+  min-width: 56px;
+  min-height: 56px;
+}
+
+.timer-display__edit-link {
+  font-size: var(--step-sm);
+}
+
+.timer-display--paused .timer-display__clock {
+  opacity: 0.55;
+}

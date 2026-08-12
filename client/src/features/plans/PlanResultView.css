@@ -1,0 +1,53 @@
+.plan-section-title {
+  font-size: var(--step-lg);
+  margin: var(--space-2) 0 0;
+}
+
+.plan-day__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.plan-day__exercises {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.plan-day__exercises li {
+  border-top: 1px solid var(--line);
+  padding-top: var(--space-3);
+}
+
+.plan-day__exercises li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.plan-day__exercise-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.plan-day__exercise-name {
+  font-weight: 600;
+}
+
+.plan-day__exercise-meta {
+  font-size: var(--step-sm);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.plan-day__exercise-notes {
+  color: var(--muted);
+  font-size: var(--step-sm);
+  margin: var(--space-1) 0 0;
+}
