@@ -8,7 +8,13 @@ export default function AppTopBar() {
   return (
     <header className="app-top-bar">
       <button type="button" className="app-top-bar__home" onClick={() => navigate("/home")} aria-label="Back to dashboard">
-        <img src="/stayfit-logo-64.png" alt="" width="26" height="26" className="app-top-bar__logo" />
+        <img
+          src={`${import.meta.env.BASE_URL}stayfit-logo-64.png`}
+          alt=""
+          width="26"
+          height="26"
+          className="app-top-bar__logo"
+        />
         <span>StayFit</span>
       </button>
     </header>
