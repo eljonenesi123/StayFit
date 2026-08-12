@@ -37,6 +37,12 @@
   margin-bottom: var(--space-7);
 }
 
+.auth-choice__error {
+  width: 100%;
+  text-align: left;
+  margin-bottom: var(--space-5);
+}
+
 .auth-choice__actions {
   width: 100%;
   display: flex;
@@ -62,6 +68,11 @@
   margin-top: var(--space-1);
 }
 
-.auth-choice__guest:hover {
+.auth-choice__guest:hover:not(:disabled) {
   color: var(--ink);
+}
+
+.auth-choice__guest:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

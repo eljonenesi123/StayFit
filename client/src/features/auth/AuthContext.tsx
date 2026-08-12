@@ -1,40 +1,61 @@
-import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
-import type { User } from "./types";
-import * as authStorage from "./authStorage";
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import type { User } from "@supabase/supabase-js";
+import { supabase } from "../../supabaseClient";
 
 interface AuthContextValue {
   user: User | null;
-  signUp: (email: string, password: string, name: string) => Promise<void>;
+  signUp: (email: string, password: string) => Promise<void>;
   logIn: (email: string, password: string) => Promise<void>;
-  continueAsGuest: () => void;
-  logOut: () => void;
+  continueAsGuest: () => Promise<void>;
+  logOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-/** See authStorage.ts — session state backing this is a client-only mock, not real auth. */
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(() => authStorage.getSessionUser());
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const value = useMemo<AuthContextValue>(
     () => ({
       user,
-      signUp: async (email, password, name) => {
-        setUser(await authStorage.signUp(email, password, name));
+      signUp: async (email, password) => {
+        const { error } = await supabase.auth.signUp({ email, password });
+        if (error) throw new Error(error.message);
       },
       logIn: async (email, password) => {
-        setUser(await authStorage.logIn(email, password));
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw new Error(error.message);
       },
-      continueAsGuest: () => {
-        setUser(authStorage.continueAsGuest());
+      continueAsGuest: async () => {
+        const { error } = await supabase.auth.signInAnonymously();
+        if (error) throw new Error(error.message);
       },
-      logOut: () => {
-        authStorage.logOut();
-        setUser(null);
+      logOut: async () => {
+        await supabase.auth.signOut();
       },
     }),
     [user]
   );
+
+  if (loading) {
+    return <div className="auth-loading">Loading…</div>;
+  }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
