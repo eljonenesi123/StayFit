@@ -177,3 +177,51 @@ export function CheckIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function ChevronRightIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M9 5l7 7-7 7" />
+    </svg>
+  );
+}
+
+export function PersonIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="12" cy="8" r="3.5" />
+      <path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" />
+    </svg>
+  );
+}
+
+export function CalendarIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="4" y="5.5" width="16" height="15" rx="2" />
+      <path d="M4 10h16" />
+      <path d="M8 3.5v4M16 3.5v4" />
+    </svg>
+  );
+}
+
+export function ScaleIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="5.5" cy="12" r="2.5" />
+      <circle cx="18.5" cy="12" r="2.5" />
+      <path d="M8 12h8" />
+      <path d="M5.5 9.5v5M18.5 9.5v5" />
+    </svg>
+  );
+}
+
+export function RulerIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3v18" />
+      <path d="M8 7l4-4 4 4" />
+      <path d="M8 17l4 4 4-4" />
+    </svg>
+  );
+}

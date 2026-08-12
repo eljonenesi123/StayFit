@@ -66,19 +66,50 @@
 
 .onboarding__body {
   flex: 1;
+  margin-top: var(--space-5);
+}
+
+.onboarding__illustration-wrap {
+  position: relative;
+  width: min(78vw, 300px);
+  height: min(78vw, 300px);
+  margin: 0 auto var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.onboarding__blob {
+  position: absolute;
+  inset: 0;
+  background: var(--accent-tint-pale);
+  border-radius: 42% 58% 55% 45% / 45% 45% 55% 55%;
 }
 
 .onboarding__illustration {
+  position: relative;
   display: block;
   width: 200px;
-  max-width: 100%;
+  max-width: 72%;
   height: auto;
-  margin: 0 auto var(--space-5);
 }
 
 .onboarding__title {
   font-size: var(--step-2xl);
   margin-bottom: var(--space-5);
+}
+
+.onboarding__title--sans {
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-2);
+}
+
+.onboarding__subtext {
+  color: var(--muted);
+  font-size: var(--step-md);
+  margin: 0 0 var(--space-5);
 }
 
 .onboarding__next {
