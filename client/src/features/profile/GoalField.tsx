@@ -1,15 +1,19 @@
 import { GOAL_OPTIONS, type Goal, type ProfileFormState } from "./types";
 import { CheckIcon } from "../../components/icons";
 import buildMuscle from "../../assets/illustrations/goal-build-muscle.svg";
+import loseWeight from "../../assets/illustrations/goal-lose-weight.svg";
 import stayFit from "../../assets/illustrations/goal-stay-fit.svg";
 import improveShape from "../../assets/illustrations/goal-improve-shape.svg";
 import endurance from "../../assets/illustrations/goal-endurance.svg";
+import flexibility from "../../assets/illustrations/goal-flexibility.svg";
 
 const ILLUSTRATIONS: Record<Goal, string> = {
   build_muscle: buildMuscle,
+  lose_weight: loseWeight,
   stay_fit: stayFit,
   improve_shape: improveShape,
   endurance: endurance,
+  flexibility: flexibility,
 };
 
 interface Props {
