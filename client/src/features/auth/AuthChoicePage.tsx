@@ -19,7 +19,7 @@ export default function AuthChoicePage() {
   return (
     <div className="auth-choice">
       <div className="auth-choice__mark">
-        <img src="/stayfit-logo-256.png" alt="StayFit" width="72" height="72" />
+        <img src={`${import.meta.env.BASE_URL}stayfit-logo-256.png`} alt="StayFit" width="72" height="72" />
       </div>
 
       <h1 className="auth-choice__title">Let's get started</h1>
