@@ -31,7 +31,9 @@
   padding: var(--space-6) var(--space-4) var(--space-5);
   border: none;
   border-radius: var(--radius-lg);
-  background: linear-gradient(155deg, var(--accent) 0%, #2b1c12 55%, #17110c 100%);
+  /* Hardcoded, not var(--accent) — this gradient's own look is intentionally kept
+     fixed even as the flat accent color used elsewhere in the app changes. */
+  background: linear-gradient(155deg, #e8672c 0%, #2b1c12 55%, #17110c 100%);
   cursor: pointer;
   opacity: 0.55;
   transform: scale(0.92);
