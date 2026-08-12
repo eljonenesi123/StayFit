@@ -1,0 +1,105 @@
+.food-log__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.food-log__total {
+  font-family: var(--font-numeric);
+  font-size: var(--step-2xl);
+  font-weight: 600;
+}
+
+.food-log__target {
+  text-align: right;
+}
+
+.food-log__target-value {
+  font-family: var(--font-numeric);
+  font-weight: 600;
+  font-size: var(--step-lg);
+}
+
+.food-log__remaining {
+  font-size: var(--step-xs);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.food-log__remaining--over {
+  color: var(--rest);
+}
+
+.food-log__search-row {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.food-log__search-row input {
+  flex: 1;
+}
+
+.food-log__results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.food-log__result-row,
+.food-log__entry-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+.food-log__result-name {
+  font-weight: 600;
+}
+
+.food-log__result-meta {
+  font-size: var(--step-xs);
+  color: var(--muted);
+}
+
+.food-log__manual-row {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.food-log__manual-row input[type="text"] {
+  flex: 2;
+}
+
+.food-log__manual-cal {
+  flex: 1;
+}
+
+.food-log__entries {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.food-log__entry-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.food-log__entry-cal {
+  font-family: var(--font-numeric);
+  font-weight: 600;
+  white-space: nowrap;
+}

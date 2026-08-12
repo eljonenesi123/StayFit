@@ -1,0 +1,20 @@
+.dashboard-page {
+  /* No bottom nav on this screen — don't reserve its space. */
+  padding-bottom: var(--space-7);
+}
+
+.dashboard-page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+}
+
+.dashboard-page__greeting {
+  font-size: var(--step-2xl);
+  margin-top: 4px;
+}
+
+.dashboard-page__logout {
+  flex-shrink: 0;
+}

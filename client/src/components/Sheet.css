@@ -1,0 +1,53 @@
+.sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 30, 27, 0.42);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  animation: sheet-fade var(--dur-base) var(--ease-standard);
+}
+
+@keyframes sheet-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sheet {
+  background: var(--paper);
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  max-height: min(86vh, 720px);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  animation: sheet-up 240ms var(--ease-standard);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@keyframes sheet-up {
+  from { transform: translateY(24px); opacity: 0.6; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.sheet__grabber {
+  width: 40px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--line-strong);
+  margin: var(--space-3) auto;
+  flex-shrink: 0;
+}
+
+.sheet__content {
+  overflow-y: auto;
+  padding: 0 var(--space-5) var(--space-6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet-overlay, .sheet {
+    animation: none;
+  }
+}
