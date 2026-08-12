@@ -112,6 +112,11 @@
   margin: 0 0 var(--space-5);
 }
 
+.onboarding__title--center,
+.onboarding__subtext--center {
+  text-align: center;
+}
+
 .onboarding__next {
   width: 100%;
   min-height: 56px;
