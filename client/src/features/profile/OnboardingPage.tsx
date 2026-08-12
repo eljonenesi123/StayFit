@@ -7,11 +7,12 @@ import AgeGenderFields from "./AgeGenderFields";
 import GoalField from "./GoalField";
 import { saveProfile } from "./profileApi";
 import { EMPTY_PROFILE_FORM, type ProfileFormState } from "./types";
+import profileSetupIllustration from "../../assets/illustrations/profile-setup.svg";
 import "./ProfileFields.css";
 import "./OnboardingPage.css";
 
 const STEPS = [
-  { title: "Your body basics", render: HeightWeightFields },
+  { title: "Let's complete your profile", illustration: profileSetupIllustration, render: HeightWeightFields },
   { title: "A bit more about you", render: AgeGenderFields },
   { title: "What's your goal?", render: GoalField },
 ];
@@ -71,6 +72,9 @@ export default function OnboardingPage() {
       </div>
 
       <div className="onboarding__body">
+        {STEPS[step].illustration && (
+          <img className="onboarding__illustration" src={STEPS[step].illustration} alt="" />
+        )}
         <span className="eyebrow">
           Step {step + 1} of {STEPS.length}
         </span>
