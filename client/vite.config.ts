@@ -2,7 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // GitHub Pages serves this as a project page at /StayFit/, so the build needs
+  // that base path; the dev server stays at / so local URLs are unaffected.
+  base: command === 'build' ? '/StayFit/' : '/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -12,4 +15,4 @@ export default defineConfig({
       'lottie-react': 'lottie-react/build/index.es.js',
     },
   },
-})
+}))
