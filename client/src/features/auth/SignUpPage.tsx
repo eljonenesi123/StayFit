@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+import BackButton from "../../components/BackButton";
 import "./AuthPage.css";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -23,7 +24,7 @@ export default function SignUpPage() {
     setSubmitting(true);
     try {
       await signUp(email, password);
-      navigate("/home", { replace: true });
+      navigate("/onboarding", { replace: true });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
@@ -33,6 +34,7 @@ export default function SignUpPage() {
 
   return (
     <div className="auth-page">
+      <BackButton />
       <div className="auth-page__header">
         <h1>Create your account</h1>
         <p>Start building your training week.</p>

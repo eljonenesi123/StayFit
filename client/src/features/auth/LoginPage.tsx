@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+import BackButton from "../../components/BackButton";
 import "./AuthPage.css";
 
 export default function LoginPage() {
@@ -29,6 +30,7 @@ export default function LoginPage() {
 
   return (
     <div className="auth-page">
+      <BackButton />
       <div className="auth-page__header">
         <h1>Welcome back</h1>
         <p>Log in to pick up where you left off.</p>

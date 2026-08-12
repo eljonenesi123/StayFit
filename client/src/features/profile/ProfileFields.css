@@ -1,0 +1,56 @@
+.profile-fields__unit-toggle {
+  max-width: 220px;
+  margin-bottom: var(--space-2);
+}
+
+.profile-fields__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.profile-fields__row input {
+  flex: 1;
+}
+
+.profile-fields__row-unit {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: var(--step-sm);
+  flex-shrink: 0;
+}
+
+.profile-fields__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.profile-fields__goal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.profile-fields__goal-card {
+  background: var(--paper-raised);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  min-height: 72px;
+  font-weight: 600;
+  font-size: var(--step-sm);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--dur-base) var(--ease-standard), background var(--dur-base) var(--ease-standard),
+    color var(--dur-base) var(--ease-standard);
+}
+
+.profile-fields__goal-card[data-active="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}

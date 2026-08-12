@@ -8,6 +8,8 @@ import AuthChoicePage from "./features/auth/AuthChoicePage";
 import SignUpPage from "./features/auth/SignUpPage";
 import LoginPage from "./features/auth/LoginPage";
 import DashboardPage from "./features/dashboard/DashboardPage";
+import OnboardingPage from "./features/profile/OnboardingPage";
+import ProfilePage from "./features/profile/ProfilePage";
 import RoundTimerPage from "./features/timer/RoundTimerPage";
 import ExerciseLibraryPage from "./features/exercises/ExerciseLibraryPage";
 import PlanGeneratorPage from "./features/plans/PlanGeneratorPage";
@@ -26,6 +28,8 @@ export default function App() {
 
         <Route element={<RequireAuth />}>
           <Route path="/home" element={<DashboardPage />} />
+          <Route path="/onboarding" element={<OnboardingPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
 
           <Route element={<AppShell />}>
             <Route path="/timer" element={<RoundTimerPage />} />

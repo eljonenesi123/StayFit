@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+import BackButton from "../../components/BackButton";
 import "./AuthChoicePage.css";
 
 export default function AuthChoicePage() {
@@ -28,6 +29,7 @@ export default function AuthChoicePage() {
 
   return (
     <div className="auth-choice">
+      <BackButton />
       <div className="auth-choice__mark">
         <img src={`${import.meta.env.BASE_URL}stayfit-logo-256.png`} alt="StayFit" width="72" height="72" />
       </div>

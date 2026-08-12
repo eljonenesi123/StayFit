@@ -23,9 +23,14 @@ export default function DashboardPage() {
           <span className="eyebrow">Welcome back</span>
           <h1 className="dashboard-page__greeting">Hi, {firstName}</h1>
         </div>
-        <button type="button" className="btn btn-ghost dashboard-page__logout" onClick={handleLogOut}>
-          Log out
-        </button>
+        <div className="dashboard-page__actions">
+          <button type="button" className="btn btn-ghost dashboard-page__profile" onClick={() => navigate("/profile")}>
+            Profile
+          </button>
+          <button type="button" className="btn btn-ghost dashboard-page__logout" onClick={handleLogOut}>
+            Log out
+          </button>
+        </div>
       </div>
 
       <div className="stack">
