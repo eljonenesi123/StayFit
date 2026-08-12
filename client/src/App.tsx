@@ -7,6 +7,7 @@ import WelcomePage from "./features/auth/WelcomePage";
 import AuthChoicePage from "./features/auth/AuthChoicePage";
 import SignUpPage from "./features/auth/SignUpPage";
 import LoginPage from "./features/auth/LoginPage";
+import WelcomeBackPage from "./features/auth/WelcomeBackPage";
 import DashboardPage from "./features/dashboard/DashboardPage";
 import OnboardingPage from "./features/profile/OnboardingPage";
 import ProfilePage from "./features/profile/ProfilePage";
@@ -28,6 +29,7 @@ export default function App() {
 
         <Route element={<RequireAuth />}>
           <Route path="/home" element={<DashboardPage />} />
+          <Route path="/welcome-back" element={<WelcomeBackPage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />
           <Route path="/profile" element={<ProfilePage />} />
 
