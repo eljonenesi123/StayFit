@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 import { ChevronLeftIcon, ChevronRightIcon } from "../../components/icons";
 import OnboardingProfileFields from "./OnboardingProfileFields";
-import GoalField from "./GoalField";
+import OnboardingGoalCarousel from "./OnboardingGoalCarousel";
 import { saveProfile } from "./profileApi";
 import { EMPTY_PROFILE_FORM, type ProfileFormState } from "./types";
 import profileSetupIllustration from "../../assets/illustrations/profile-setup.svg";
-import "./ProfileFields.css";
 import "./OnboardingPage.css";
 
 const STEPS = [
@@ -16,9 +15,16 @@ const STEPS = [
     subtext: "It will help us to know more about you!",
     illustration: profileSetupIllustration,
     showProgress: false,
+    centered: false,
     render: OnboardingProfileFields,
   },
-  { title: "What's your goal?", showProgress: true, render: GoalField },
+  {
+    title: "What's your goal?",
+    subtext: "It will help us to choose the best plan for you.",
+    showProgress: false,
+    centered: true,
+    render: OnboardingGoalCarousel,
+  },
 ];
 
 export default function OnboardingPage() {
@@ -92,10 +98,18 @@ export default function OnboardingPage() {
             Step {step + 1} of {STEPS.length}
           </span>
         )}
-        <h1 className={"onboarding__title" + (current.illustration ? " onboarding__title--sans" : "")}>
+        <h1
+          className={
+            "onboarding__title onboarding__title--sans" + (current.centered ? " onboarding__title--center" : "")
+          }
+        >
           {current.title}
         </h1>
-        {current.subtext && <p className="onboarding__subtext">{current.subtext}</p>}
+        {current.subtext && (
+          <p className={"onboarding__subtext" + (current.centered ? " onboarding__subtext--center" : "")}>
+            {current.subtext}
+          </p>
+        )}
 
         {error && <div className="auth-form__error">{error}</div>}
 
