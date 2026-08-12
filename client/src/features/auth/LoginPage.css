@@ -1,10 +1,18 @@
 .login-page {
+  --login-top-offset: clamp(3.5rem, 12vh, 5.5rem);
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
   max-width: 420px;
   margin: 0 auto;
-  padding: var(--space-7) var(--space-5) var(--space-6);
+  padding: var(--login-top-offset) var(--space-5) var(--space-6);
+}
+
+/* BackButton is fixed-position (shared across screens), so pushing the
+   container's own padding down doesn't move it — override it here to sit
+   just above the greeting instead of hugging the viewport's top edge. */
+.login-page .back-button {
+  top: calc(var(--login-top-offset) - var(--space-6));
 }
 
 .login-page__header {
