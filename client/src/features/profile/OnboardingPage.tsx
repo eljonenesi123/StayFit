@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
-import { ChevronLeftIcon } from "../../components/icons";
-import HeightWeightFields from "./HeightWeightFields";
-import AgeGenderFields from "./AgeGenderFields";
+import { ChevronLeftIcon, ChevronRightIcon } from "../../components/icons";
+import OnboardingProfileFields from "./OnboardingProfileFields";
 import GoalField from "./GoalField";
 import { saveProfile } from "./profileApi";
 import { EMPTY_PROFILE_FORM, type ProfileFormState } from "./types";
@@ -12,9 +11,14 @@ import "./ProfileFields.css";
 import "./OnboardingPage.css";
 
 const STEPS = [
-  { title: "Let's complete your profile", illustration: profileSetupIllustration, render: HeightWeightFields },
-  { title: "A bit more about you", render: AgeGenderFields },
-  { title: "What's your goal?", render: GoalField },
+  {
+    title: "Let's complete your profile",
+    subtext: "It will help us to know more about you!",
+    illustration: profileSetupIllustration,
+    showProgress: false,
+    render: OnboardingProfileFields,
+  },
+  { title: "What's your goal?", showProgress: true, render: GoalField },
 ];
 
 export default function OnboardingPage() {
@@ -47,8 +51,10 @@ export default function OnboardingPage() {
     }
   };
 
-  const StepFields = STEPS[step].render;
+  const current = STEPS[step];
+  const StepFields = current.render;
   const isLastStep = step === STEPS.length - 1;
+  const nextLabel = submitting ? "Saving…" : isLastStep ? "Finish" : "Next";
 
   return (
     <div className="onboarding">
@@ -65,20 +71,31 @@ export default function OnboardingPage() {
         </button>
       </div>
 
-      <div className="onboarding__progress">
-        {STEPS.map((_, i) => (
-          <span key={i} className="onboarding__progress-seg" data-filled={i <= step} />
-        ))}
-      </div>
+      {current.showProgress && (
+        <div className="onboarding__progress">
+          {STEPS.map((_, i) => (
+            <span key={i} className="onboarding__progress-seg" data-filled={i <= step} />
+          ))}
+        </div>
+      )}
 
       <div className="onboarding__body">
-        {STEPS[step].illustration && (
-          <img className="onboarding__illustration" src={STEPS[step].illustration} alt="" />
+        {current.illustration && (
+          <div className="onboarding__illustration-wrap">
+            <div className="onboarding__blob" aria-hidden="true" />
+            <img className="onboarding__illustration" src={current.illustration} alt="" />
+          </div>
         )}
-        <span className="eyebrow">
-          Step {step + 1} of {STEPS.length}
-        </span>
-        <h1 className="onboarding__title">{STEPS[step].title}</h1>
+
+        {current.showProgress && (
+          <span className="eyebrow">
+            Step {step + 1} of {STEPS.length}
+          </span>
+        )}
+        <h1 className={"onboarding__title" + (current.illustration ? " onboarding__title--sans" : "")}>
+          {current.title}
+        </h1>
+        {current.subtext && <p className="onboarding__subtext">{current.subtext}</p>}
 
         {error && <div className="auth-form__error">{error}</div>}
 
@@ -86,7 +103,8 @@ export default function OnboardingPage() {
       </div>
 
       <button type="button" className="btn btn-primary onboarding__next" onClick={handleNext} disabled={submitting}>
-        {submitting ? "Saving…" : isLastStep ? "Finish" : "Next"}
+        {nextLabel}
+        {!submitting && !isLastStep && <ChevronRightIcon width={18} height={18} />}
       </button>
     </div>
   );

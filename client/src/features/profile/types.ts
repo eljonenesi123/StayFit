@@ -12,6 +12,8 @@ export interface ProfileFormState {
   weightUnit: WeightUnit;
   weight: string;
   age: string;
+  /** Onboarding collects a date instead of a raw age — kept here (not derived-only) so it survives step back/forward navigation. Converted to `age` on change; never sent to Supabase itself (no matching column). */
+  dateOfBirth: string;
   gender: Gender | null;
   goal: Goal | null;
 }
@@ -48,6 +50,7 @@ export const EMPTY_PROFILE_FORM: ProfileFormState = {
   weightUnit: "kg",
   weight: "",
   age: "",
+  dateOfBirth: "",
   gender: null,
   goal: null,
 };
