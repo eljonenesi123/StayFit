@@ -35,7 +35,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     () => ({
       user,
       signUp: async (email, password) => {
-        const { error } = await supabase.auth.signUp({ email, password });
+        // Send the confirmation-email link back to wherever this app is actually
+        // running (GitHub Pages or localhost), not Supabase's default Site URL —
+        // that default still has to be added to the project's Redirect URLs
+        // allow list in the Supabase dashboard, this alone isn't enough.
+        const emailRedirectTo = `${window.location.origin}${import.meta.env.BASE_URL}`;
+        const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo } });
         if (error) throw new Error(error.message);
       },
       logIn: async (email, password) => {
