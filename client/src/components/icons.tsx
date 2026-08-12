@@ -225,3 +225,74 @@ export function RulerIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function EnvelopeIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+      <path d="M4 7l8 6 8-6" />
+    </svg>
+  );
+}
+
+export function EyeIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
+export function EyeOffIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M3 3l18 18" />
+      <path d="M10.6 5.7A10.6 10.6 0 0 1 12 5.5c6 0 9.5 6.5 9.5 6.5a15 15 0 0 1-3.3 4" />
+      <path d="M6.5 7.4C4 9.1 2.5 12 2.5 12s3.5 6.5 9.5 6.5a9.6 9.6 0 0 0 3.9-.8" />
+      <path d="M9.9 10a3 3 0 0 0 4.1 4.1" />
+    </svg>
+  );
+}
+
+export function LoginIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" />
+      <path d="M11 8l4 4-4 4" />
+      <path d="M15 12H3" />
+    </svg>
+  );
+}
+
+export function GoogleIcon(props: IconProps) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
+      <path
+        fill="#4285F4"
+        d="M19.6 10.23c0-.68-.06-1.36-.18-2.02H10v3.83h5.38a4.6 4.6 0 0 1-2 3.02v2.5h3.23c1.89-1.74 2.99-4.3 2.99-7.33z"
+      />
+      <path
+        fill="#34A853"
+        d="M10 20c2.7 0 4.96-.89 6.61-2.42l-3.23-2.5c-.9.6-2.05.95-3.38.95-2.6 0-4.8-1.75-5.59-4.11H1.08v2.59A10 10 0 0 0 10 20z"
+      />
+      <path fill="#FBBC05" d="M4.41 11.92a6 6 0 0 1 0-3.84V5.49H1.08a10 10 0 0 0 0 9.02z" />
+      <path
+        fill="#EA4335"
+        d="M10 3.96c1.47 0 2.79.5 3.82 1.5l2.87-2.87A9.6 9.6 0 0 0 10 0 10 10 0 0 0 1.08 5.49l3.33 2.59C5.2 5.72 7.4 3.96 10 3.96z"
+      />
+    </svg>
+  );
+}
+
+export function FacebookIcon(props: IconProps) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
+      <circle cx="10" cy="10" r="10" fill="#1877F2" />
+      <path
+        fill="#fff"
+        d="M13.2 10.3h-2v6.6h-2.7v-6.6H6.9V7.9h1.6V6.4c0-1.6.7-2.6 2.6-2.6h1.9v2.4h-1.2c-.7 0-.8.3-.8.8v1h2z"
+      />
+    </svg>
+  );
+}

@@ -39,6 +39,8 @@ interface AuthContextValue {
   signUp: (email: string, password: string) => Promise<void>;
   logIn: (email: string, password: string) => Promise<void>;
   continueAsGuest: () => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
+  logInWithProvider: (provider: "google" | "facebook") => Promise<void>;
   logOut: () => Promise<void>;
 }
 
@@ -102,6 +104,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         // Clear any stale mock session so it doesn't shadow the real guest
         // session on the next page load.
         localStorage.removeItem(MOCK_SESSION_KEY);
+      },
+      resetPassword: async (email) => {
+        if (USE_MOCK_AUTH) {
+          // Real resetPasswordForEmail sends an email through the same
+          // rate-limited service as signup confirmation — skip it here too
+          // for the same reason USE_MOCK_AUTH skips signUp/logIn.
+          return;
+        }
+        const redirectTo = `${window.location.origin}${import.meta.env.BASE_URL}`;
+        const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+        if (error) throw new Error(error.message);
+      },
+      logInWithProvider: async (provider) => {
+        // Always real — OAuth redirects to the provider's own login page, so
+        // it doesn't hit Supabase's email rate limit the way password
+        // signup/login/reset do, and USE_MOCK_AUTH has nothing to fake here
+        // (there's no form to skip, just an external redirect).
+        const redirectTo = `${window.location.origin}${import.meta.env.BASE_URL}`;
+        const { error } = await supabase.auth.signInWithOAuth({ provider, options: { redirectTo } });
+        if (error) throw new Error(error.message);
       },
       logOut: async () => {
         localStorage.removeItem(MOCK_SESSION_KEY);
