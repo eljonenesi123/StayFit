@@ -21,7 +21,7 @@ export default function LoginPage() {
       await logIn(email, password);
       navigate("/home", { replace: true });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Couldn't log in.");
+      setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
       setSubmitting(false);
     }
@@ -60,10 +60,6 @@ export default function LoginPage() {
       <div className="auth-page__switch">
         New here? <button type="button" onClick={() => navigate("/signup")}>Create an account</button>
       </div>
-
-      <p className="auth-page__demo-note">
-        Demo account — stored only on this device, not a real authentication system yet.
-      </p>
     </div>
   );
 }

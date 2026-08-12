@@ -9,10 +9,10 @@ export default function DashboardPage() {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
 
-  const firstName = user?.name.split(" ")[0] || "there";
+  const firstName = user?.is_anonymous ? "Guest" : user?.email ? user.email.split("@")[0] : "there";
 
-  const handleLogOut = () => {
-    logOut();
+  const handleLogOut = async () => {
+    await logOut();
     navigate("/welcome", { replace: true });
   };
 

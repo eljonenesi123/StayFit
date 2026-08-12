@@ -28,16 +28,6 @@
   gap: var(--space-1);
 }
 
-.auth-form__error {
-  background: var(--rest-tint);
-  color: var(--rest);
-  border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-4);
-  font-size: var(--step-sm);
-  font-weight: 600;
-  margin-bottom: var(--space-4);
-}
-
 .auth-form__submit {
   width: 100%;
   min-height: 56px;
@@ -59,11 +49,4 @@
   cursor: pointer;
   padding: 0;
   font-size: inherit;
-}
-
-.auth-page__demo-note {
-  text-align: center;
-  font-size: var(--step-xs);
-  color: var(--muted);
-  margin-top: var(--space-6);
 }

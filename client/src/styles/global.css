@@ -311,6 +311,26 @@ input:focus, select:focus, textarea:focus {
   color: var(--muted);
 }
 
+.auth-form__error {
+  background: var(--rest-tint);
+  color: var(--rest);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--step-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.auth-loading {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: var(--step-sm);
+  font-weight: 600;
+}
+
 .skeleton {
   background: linear-gradient(90deg, var(--line) 25%, #f2f2f2 50%, var(--line) 75%);
   background-size: 200% 100%;
