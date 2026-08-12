@@ -3,31 +3,55 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: var(--space-7) var(--space-5) var(--space-6);
+  padding: var(--space-5) var(--space-5) var(--space-6);
   max-width: 420px;
   margin: 0 auto;
 }
 
 .welcome__body {
-  flex: 1;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
-  gap: var(--space-1);
+  gap: var(--space-3);
+  /* Fixed (small) top offset instead of symmetric centering — keeps the group
+     high enough that the composition doesn't read as floating in dead space,
+     while margin-bottom: auto sends all remaining slack into one gap above
+     the CTA instead of splitting it above and below the group. */
+  margin-top: clamp(2.5rem, 8vh, 4.5rem);
+  margin-bottom: auto;
+}
+
+.welcome__animation-wrap {
+  position: relative;
+  width: min(78vw, 300px);
+  height: min(78vw, 300px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-2);
+}
+
+.welcome__blob {
+  position: absolute;
+  inset: 0;
+  background: var(--accent-tint-pale);
+  border-radius: 42% 58% 55% 45% / 45% 45% 55% 55%;
 }
 
 .welcome__animation {
-  width: min(72vw, 280px);
-  height: min(72vw, 280px);
-  margin-bottom: var(--space-4);
+  position: relative;
+  width: min(62vw, 240px);
+  height: min(62vw, 240px);
 }
 
 .welcome__title {
-  font-size: clamp(2.25rem, 9vw, 3rem);
-  margin-bottom: var(--space-3);
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0;
 }
 
 .welcome__subtext {
