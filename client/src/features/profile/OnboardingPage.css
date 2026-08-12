@@ -123,3 +123,10 @@
   font-size: var(--step-md);
   margin-top: var(--space-6);
 }
+
+.goal-carousel-hint {
+  text-align: center;
+  color: var(--muted);
+  font-size: var(--step-xs);
+  margin: var(--space-3) 0 0;
+}

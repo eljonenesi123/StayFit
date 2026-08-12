@@ -1,7 +1,7 @@
 export type HeightUnit = "cm" | "ftin";
 export type WeightUnit = "kg" | "lb";
 export type Gender = "female" | "male" | "other";
-export type Goal = "build_muscle" | "stay_fit" | "improve_shape" | "endurance";
+export type Goal = "build_muscle" | "lose_weight" | "improve_shape" | "stay_fit" | "endurance" | "flexibility";
 
 /** In-progress form state, kept in whichever units the user is currently entering. */
 export interface ProfileFormState {
@@ -34,9 +34,11 @@ export interface Profile {
 
 export const GOAL_OPTIONS: { value: Goal; label: string; description: string }[] = [
   { value: "build_muscle", label: "Build Muscle", description: "Gain strength and size with focused training." },
+  { value: "lose_weight", label: "Lose Weight", description: "Burn fat and build sustainable habits." },
+  { value: "improve_shape", label: "Improve Shape", description: "Tone up and build a leaner physique." },
   { value: "stay_fit", label: "Stay Fit", description: "Keep up a steady, balanced routine." },
-  { value: "improve_shape", label: "Improve Shape", description: "Tone up and reshape at your own pace." },
-  { value: "endurance", label: "Endurance", description: "Build stamina for longer, harder efforts." },
+  { value: "endurance", label: "Endurance", description: "Build stamina for longer, harder sessions." },
+  { value: "flexibility", label: "Flexibility", description: "Improve mobility and reduce stiffness." },
 ];
 
 export const GENDER_OPTIONS: { value: Gender; label: string }[] = [

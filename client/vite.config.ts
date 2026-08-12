@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -13,6 +14,8 @@ export default defineConfig(({ command }) => ({
       // default; the UMD build's default export is the whole exports object rather
       // than the Lottie component, so force resolution to the real ESM entry.
       'lottie-react': 'lottie-react/build/index.es.js',
+      // shadcn/ui-style "@/..." import convention, used by CoverflowCarousel.
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 }))

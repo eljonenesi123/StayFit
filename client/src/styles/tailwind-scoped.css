@@ -1,0 +1,14 @@
+/*
+  `@tailwind base` is included because Tailwind's gradient/ring/shadow
+  utilities (bg-gradient-to-b, ring-4, shadow-xl, etc.) rely on CSS custom
+  property *defaults* (--tw-gradient-from-position, --tw-ring-color, etc.)
+  that ship as part of this "base" layer — without them, those utilities
+  silently compute to nothing (verified: background-image came out `none`).
+  Preflight's actual destructive global resets (margin/heading/list resets
+  that would collide with this app's hand-rolled styles/global.css) are
+  disabled separately via corePlugins.preflight: false in tailwind.config.js
+  — that flag suppresses just the reset rules, not these variable defaults,
+  so this stays safely scoped despite including `base`.
+*/
+@tailwind base;
+@tailwind utilities;
