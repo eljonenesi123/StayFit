@@ -27,30 +27,70 @@
   margin-top: var(--space-2);
 }
 
-.profile-fields__goal-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.profile-fields__goal-list {
+  display: flex;
+  flex-direction: column;
   gap: var(--space-3);
   margin-top: var(--space-2);
 }
 
 .profile-fields__goal-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   background: var(--paper-raised);
   border: 1.5px solid var(--line-strong);
   border-radius: var(--radius-lg);
-  padding: var(--space-4);
-  min-height: 72px;
-  font-weight: 600;
-  font-size: var(--step-sm);
-  color: var(--ink);
-  text-align: left;
+  padding: var(--space-4) var(--space-4) var(--space-5);
   cursor: pointer;
-  transition: border-color var(--dur-base) var(--ease-standard), background var(--dur-base) var(--ease-standard),
-    color var(--dur-base) var(--ease-standard);
+  transition: border-color var(--dur-base) var(--ease-standard), background var(--dur-base) var(--ease-standard);
 }
 
 .profile-fields__goal-card[data-active="true"] {
-  background: var(--accent);
+  background: var(--accent-tint);
   border-color: var(--accent);
+}
+
+.profile-fields__goal-illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 150px;
+  margin-bottom: var(--space-3);
+}
+
+.profile-fields__goal-illustration img {
+  max-width: 170px;
+  max-height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.profile-fields__goal-title {
+  font-weight: 700;
+  font-size: var(--step-md);
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.profile-fields__goal-desc {
+  font-size: var(--step-sm);
+  color: var(--muted);
+}
+
+.profile-fields__goal-check {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
