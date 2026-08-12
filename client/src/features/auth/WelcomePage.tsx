@@ -15,23 +15,23 @@ export default function WelcomePage() {
 
   return (
     <div className="welcome">
-      <div className="welcome__body">
-        <div className="welcome__animation-wrap">
-          <div className="welcome__blob" aria-hidden="true" />
-          <div className="welcome__animation">
-            <Lottie animationData={crunchAnimation} loop autoplay />
+      <div className="welcome__content">
+        <div className="welcome__body">
+          <div className="welcome__animation-wrap">
+            <div className="welcome__blob" aria-hidden="true" />
+            <div className="welcome__animation">
+              <Lottie animationData={crunchAnimation} loop autoplay />
+            </div>
           </div>
+
+          <h1 className="welcome__title">StayFit</h1>
+          <p className="welcome__subtext">Your workouts, meals, and progress, all in one app.</p>
         </div>
 
-        <h1 className="welcome__title">StayFit</h1>
-        <p className="welcome__subtext">
-          Training, meals, and recovery — one calm place to run your whole week.
-        </p>
+        <button type="button" className="btn btn-primary welcome__cta" onClick={() => navigate("/start")}>
+          Get Started
+        </button>
       </div>
-
-      <button type="button" className="btn btn-primary welcome__cta" onClick={() => navigate("/start")}>
-        Get Started
-      </button>
     </div>
   );
 }

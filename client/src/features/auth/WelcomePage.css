@@ -3,24 +3,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--space-5) var(--space-5) var(--space-6);
+  justify-content: center;
+  padding: var(--space-6) var(--space-5);
   max-width: 420px;
   margin: 0 auto;
 }
 
+/* One block (circle + animation + heading + subtext + CTA) centered as a
+   unit via the parent's justify-content: center — gives balanced space
+   above and below instead of dumping all the slack into a single gap. */
+.welcome__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .welcome__body {
-  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: var(--space-3);
-  /* Fixed (small) top offset instead of symmetric centering — keeps the group
-     high enough that the composition doesn't read as floating in dead space,
-     while margin-bottom: auto sends all remaining slack into one gap above
-     the CTA instead of splitting it above and below the group. */
-  margin-top: clamp(2.5rem, 8vh, 4.5rem);
-  margin-bottom: auto;
 }
 
 .welcome__animation-wrap {
@@ -38,6 +42,19 @@
   inset: 0;
   background: var(--accent-tint-pale);
   border-radius: 42% 58% 55% 45% / 45% 45% 55% 55%;
+  animation: welcome-blob-breathe 3.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes welcome-blob-breathe {
+  0%, 100% { transform: scale(0.98); }
+  50% { transform: scale(1.02); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome__blob {
+    animation: none;
+  }
 }
 
 .welcome__animation {
@@ -66,4 +83,5 @@
   min-height: 58px;
   font-size: var(--step-md);
   flex-shrink: 0;
+  margin-top: var(--space-7);
 }
