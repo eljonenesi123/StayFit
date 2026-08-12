@@ -15,10 +15,11 @@
   --line: #e5e5e5;
   --line-strong: #d4d4d4;
 
-  --accent: #ff6b35;
-  --accent-strong: #e2551e;
-  --accent-tint: #fff0e8;
-  --accent-tint-strong: #ffd3ba;
+  --accent: #f4511e;
+  --accent-strong: #d33807;
+  --accent-tint: #feece7;
+  --accent-tint-strong: #fdbaa5;
+  --accent-tint-pale: #fdf3ef;
 
   --rest: #262626;
   --rest-tint: #ececec;

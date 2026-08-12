@@ -16,8 +16,11 @@ export default function WelcomePage() {
   return (
     <div className="welcome">
       <div className="welcome__body">
-        <div className="welcome__animation">
-          <Lottie animationData={crunchAnimation} loop autoplay />
+        <div className="welcome__animation-wrap">
+          <div className="welcome__blob" aria-hidden="true" />
+          <div className="welcome__animation">
+            <Lottie animationData={crunchAnimation} loop autoplay />
+          </div>
         </div>
 
         <h1 className="welcome__title">StayFit</h1>
