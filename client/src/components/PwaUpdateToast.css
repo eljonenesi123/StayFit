@@ -1,0 +1,56 @@
+.pwa-update-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--nav-height) + var(--space-4) + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-body);
+  font-size: var(--step-sm);
+  z-index: 200;
+  max-width: calc(100vw - var(--space-6));
+}
+
+.pwa-update-toast button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.pwa-update-toast > button:not(.pwa-update-toast__dismiss) {
+  background: var(--accent);
+  color: var(--paper);
+  font-weight: 600;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  transition: background var(--dur-base) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
+}
+
+.pwa-update-toast > button:not(.pwa-update-toast__dismiss):hover {
+  background: var(--accent-strong);
+}
+
+.pwa-update-toast > button:not(.pwa-update-toast__dismiss):active {
+  transform: scale(0.96);
+}
+
+.pwa-update-toast__dismiss {
+  background: transparent;
+  color: var(--paper);
+  opacity: 0.6;
+  font-size: 1.1em;
+  line-height: 1;
+  padding: 0 var(--space-1);
+}
+
+.pwa-update-toast__dismiss:hover {
+  opacity: 1;
+}
