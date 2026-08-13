@@ -5,6 +5,7 @@ import type { Exercise, MuscleGroup, Equipment } from "./types";
 import ExerciseCard from "./ExerciseCard";
 import ExerciseDetailSheet from "./ExerciseDetailSheet";
 import { CATEGORIES, CATEGORY_LABELS, MUSCLE_GROUP_TO_CATEGORY, type WorkoutCategory } from "../workouts/categories";
+import { ChevronDownIcon } from "../../components/icons";
 import "./ExerciseLibraryPage.css";
 
 const MUSCLE_GROUPS: MuscleGroup[] = [
@@ -36,6 +37,7 @@ export default function ExerciseLibraryPage() {
   const [muscleFilter, setMuscleFilter] = useState<MuscleGroup | null>(null);
   const [equipmentFilter, setEquipmentFilter] = useState<Equipment | null>(null);
   const [selected, setSelected] = useState<Exercise | null>(null);
+  const [moreFiltersOpen, setMoreFiltersOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -58,6 +60,7 @@ export default function ExerciseLibraryPage() {
     });
   }, [query, categoryFilter, muscleFilter, equipmentFilter]);
 
+  const secondaryActiveCount = (muscleFilter ? 1 : 0) + (equipmentFilter ? 1 : 0);
   const hasActiveFilters = categoryFilter || muscleFilter || equipmentFilter || query;
 
   return (
@@ -75,14 +78,14 @@ export default function ExerciseLibraryPage() {
         className="exercise-library__search"
       />
 
-      <div className="exercise-library__filter-group">
+      <div className="exercise-library__filter-group exercise-library__filter-group--primary">
         <span className="exercise-library__filter-label">Category</span>
         <div className="exercise-library__chips">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               type="button"
-              className="chip"
+              className="chip chip-category"
               data-active={categoryFilter === cat}
               onClick={() => setCategoryFilter(categoryFilter === cat ? null : cat)}
             >
@@ -92,39 +95,62 @@ export default function ExerciseLibraryPage() {
         </div>
       </div>
 
-      <div className="exercise-library__filter-group">
-        <span className="exercise-library__filter-label">Muscle group</span>
-        <div className="exercise-library__chips">
-          {MUSCLE_GROUPS.map((mg) => (
-            <button
-              key={mg}
-              type="button"
-              className="chip"
-              data-active={muscleFilter === mg}
-              onClick={() => setMuscleFilter(muscleFilter === mg ? null : mg)}
-            >
-              {mg}
-            </button>
-          ))}
-        </div>
-      </div>
+      <button
+        type="button"
+        className="exercise-library__more-toggle"
+        aria-expanded={moreFiltersOpen}
+        onClick={() => setMoreFiltersOpen((v) => !v)}
+      >
+        <span>
+          More filters
+          {secondaryActiveCount > 0 && (
+            <span className="exercise-library__more-toggle-count">{secondaryActiveCount}</span>
+          )}
+        </span>
+        <ChevronDownIcon
+          width={16}
+          height={16}
+          className={`exercise-library__more-toggle-icon${moreFiltersOpen ? " exercise-library__more-toggle-icon--open" : ""}`}
+        />
+      </button>
 
-      <div className="exercise-library__filter-group">
-        <span className="exercise-library__filter-label">Equipment</span>
-        <div className="exercise-library__chips">
-          {EQUIPMENT.map((eq) => (
-            <button
-              key={eq}
-              type="button"
-              className="chip"
-              data-active={equipmentFilter === eq}
-              onClick={() => setEquipmentFilter(equipmentFilter === eq ? null : eq)}
-            >
-              {eq}
-            </button>
-          ))}
+      {moreFiltersOpen && (
+        <div className="exercise-library__more-filters">
+          <div className="exercise-library__filter-group">
+            <span className="exercise-library__filter-label">Muscle group</span>
+            <div className="exercise-library__chips">
+              {MUSCLE_GROUPS.map((mg) => (
+                <button
+                  key={mg}
+                  type="button"
+                  className="chip chip-secondary"
+                  data-active={muscleFilter === mg}
+                  onClick={() => setMuscleFilter(muscleFilter === mg ? null : mg)}
+                >
+                  {mg}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="exercise-library__filter-group">
+            <span className="exercise-library__filter-label">Equipment</span>
+            <div className="exercise-library__chips">
+              {EQUIPMENT.map((eq) => (
+                <button
+                  key={eq}
+                  type="button"
+                  className="chip chip-secondary"
+                  data-active={equipmentFilter === eq}
+                  onClick={() => setEquipmentFilter(equipmentFilter === eq ? null : eq)}
+                >
+                  {eq}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="exercise-library__results-meta">
         <span>

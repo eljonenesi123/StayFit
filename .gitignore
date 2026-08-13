@@ -9,3 +9,9 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 .claude/
+
+# scripts/fetchExercises.mjs — holds the RapidAPI key, never commit it.
+# (already caught by the blanket ".env" rule above; listed explicitly for clarity)
+scripts/.env
+# Cached raw ExerciseDB API response, so reruns don't burn free-tier quota re-fetching the list.
+scripts/.cache/

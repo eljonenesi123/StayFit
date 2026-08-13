@@ -25,6 +25,10 @@
   --rest-tint: #ececec;
 
   --danger: #b3452f;
+  --danger-tint: #f8e6e1;
+
+  --success: #2e7d4f;
+  --success-tint: #e3f2e8;
 
   /* Type */
   --font-display: "Fraunces", ui-serif, Georgia, serif;
