@@ -1,5 +1,79 @@
+.calorie-ring-card {
+  position: relative;
+}
+
 .calorie-ring-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: var(--space-3);
+}
+
+.calorie-ring-card__goal-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--line);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease-standard), color var(--dur-base) var(--ease-standard);
+}
+
+.calorie-ring-card__goal-edit:hover {
+  background: var(--accent-tint);
+  color: var(--accent-strong);
+}
+
+.calorie-ring-card__goal-form {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.calorie-ring-card__goal-form input {
+  flex: 1;
+}
+
+.calorie-ring-card__empty {
+  text-align: center;
+  padding: var(--space-6) 0;
+}
+
+.calorie-ring-card__empty-text {
+  color: var(--ink-soft);
+  font-weight: 600;
+  margin: 0 0 var(--space-1);
+}
+
+.calorie-ring-card__empty-goal {
+  color: var(--muted);
+  font-size: var(--step-sm);
+  margin: 0;
+}
+
+.calorie-ring-card__quick-add {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.calorie-ring-card__quick-add input {
+  flex: 1;
+  min-width: 0;
+}
+
+.calorie-ring-card__quick-add-cal {
+  flex: 0 0 76px !important;
+}
+
+.calorie-ring-card__log-btn {
+  width: 100%;
+  margin-top: var(--space-4);
 }
 
 .calorie-ring {
@@ -26,7 +100,6 @@
   stroke: var(--accent);
   stroke-width: 10;
   stroke-linecap: round;
-  transition: stroke-dashoffset var(--dur-base) var(--ease-standard);
 }
 
 .calorie-ring__center {

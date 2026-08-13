@@ -7,12 +7,14 @@ interface TimerDisplayProps {
   timer: RoundTimerState;
   totalRounds: number;
   onExit: () => void;
+  /** e.g. "Upper Body" when this run came from Home's Today's Target card. */
+  label?: string;
 }
 
 const RADIUS = 130;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
-export default function TimerDisplay({ timer, totalRounds, onExit }: TimerDisplayProps) {
+export default function TimerDisplay({ timer, totalRounds, onExit, label }: TimerDisplayProps) {
   const {
     status,
     currentIndex,
@@ -37,7 +39,7 @@ export default function TimerDisplay({ timer, totalRounds, onExit }: TimerDispla
     <div className={`timer-display timer-display--${tone} timer-display--${status}`}>
       <div className="timer-display__top">
         <span className="eyebrow">
-          Round {Math.min(currentIndex + 1, totalRounds)} of {totalRounds}
+          {label && `${label} · `}Round {Math.min(currentIndex + 1, totalRounds)} of {totalRounds}
         </span>
         {wakeLockSupported && status === "running" && (
           <span className="timer-display__wakelock" title="Screen will stay on">

@@ -1,3 +1,7 @@
 .app-shell__content {
   padding-top: var(--topbar-height);
 }
+
+.app-shell__content--no-topbar {
+  padding-top: 0;
+}

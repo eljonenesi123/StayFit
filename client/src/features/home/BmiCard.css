@@ -1,0 +1,115 @@
+.bmi-card--filled {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+  border-color: transparent;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.bmi-card__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.bmi-card--filled .bmi-card__eyebrow {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.bmi-card__status {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-md);
+  line-height: 1.25;
+  max-width: 20ch;
+  margin: 0;
+}
+
+.bmi-card__cta {
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  border-radius: var(--radius-full);
+  background: #fff;
+  color: var(--accent-strong);
+  font-weight: 700;
+  font-size: var(--step-xs);
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-standard), opacity var(--dur-base) var(--ease-standard);
+}
+
+.bmi-card__cta:hover {
+  opacity: 0.9;
+}
+
+.bmi-card__cta:active {
+  transform: scale(0.96);
+}
+
+.bmi-card__gauge {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  flex-shrink: 0;
+}
+
+.bmi-card__gauge-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.bmi-card__gauge-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.28);
+  stroke-width: 9;
+}
+
+.bmi-card__gauge-progress {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 9;
+  stroke-linecap: round;
+}
+
+.bmi-card__gauge-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bmi-card__gauge-value {
+  font-family: var(--font-numeric);
+  font-weight: 700;
+  font-size: var(--step-md);
+}
+
+.bmi-card--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.bmi-card--empty .bmi-card__cta {
+  background: var(--accent);
+  color: #fff;
+}
+
+.bmi-card__empty-text {
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.bmi-card--loading {
+  height: 152px;
+  padding: 0;
+  border: none;
+}

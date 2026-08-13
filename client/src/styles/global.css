@@ -343,6 +343,48 @@ input:focus, select:focus, textarea:focus {
   100% { background-position: -200% 0; }
 }
 
+/* Gauge sweep-in: apply to a stroked SVG progress circle, set
+   --gauge-from/--gauge-to inline (circumference → real offset), and give
+   the element a `key` tied to the target value so React remounts it (and
+   the animation replays) whenever the value changes, not just on load. */
+.gauge-sweep {
+  animation: gauge-sweep 900ms var(--ease-standard) both;
+}
+
+@keyframes gauge-sweep {
+  from { stroke-dashoffset: var(--gauge-from); }
+  to { stroke-dashoffset: var(--gauge-to); }
+}
+
+/* Staggered card entrance — wrap each card in a `.dashboard-card-in` div
+   with an inline animationDelay per index. */
+.dashboard-card-in {
+  animation: dashboard-card-in 500ms both;
+}
+
+@keyframes dashboard-card-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Bars growing from the bottom — pair with an inline animationDelay per
+   index for a left-to-right stagger. */
+.bar-grow {
+  animation: bar-grow 500ms ease-out both;
+  transform-origin: bottom;
+}
+
+@keyframes bar-grow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gauge-sweep, .dashboard-card-in, .bar-grow {
+    animation: none !important;
+  }
+}
+
 @media (min-width: 640px) {
   .page {
     padding-top: var(--space-7);

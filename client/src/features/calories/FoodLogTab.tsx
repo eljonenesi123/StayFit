@@ -1,18 +1,13 @@
 import { useMemo, useState } from "react";
-import type { FoodEntry } from "./types";
 import { searchFood, ApiNotConfiguredError, type NutritionSearchResult } from "./nutritionApi";
-import { loadJSON, saveJSON } from "../../lib/storage";
+import { loadJSON } from "../../lib/storage";
 import { TDEE_STORAGE_KEY } from "./CalculatorTab";
-import { LOG_STORAGE_KEY, isToday } from "./todayLog";
+import { getAllEntries, addFoodEntry, removeFoodEntry, isToday } from "./todayLog";
 import { TrashIcon, PlusIcon } from "../../components/icons";
 import "./FoodLogTab.css";
 
-function newId() {
-  return Math.random().toString(36).slice(2, 10);
-}
-
 export default function FoodLogTab() {
-  const [entries, setEntries] = useState<FoodEntry[]>(() => loadJSON(LOG_STORAGE_KEY, []));
+  const [entries, setEntries] = useState(() => getAllEntries());
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState<NutritionSearchResult[] | null>(null);
   const [searchStatus, setSearchStatus] = useState<"idle" | "loading" | "not-configured" | "error">("idle");
@@ -27,19 +22,14 @@ export default function FoodLogTab() {
   );
   const totalToday = todaysEntries.reduce((sum, e) => sum + e.calories, 0);
 
-  const persist = (next: FoodEntry[]) => {
-    setEntries(next);
-    saveJSON(LOG_STORAGE_KEY, next);
-  };
-
   const addEntry = (name: string, calories: number, servingDescription?: string) => {
-    if (!name.trim() || !Number.isFinite(calories) || calories <= 0) return;
-    const entry: FoodEntry = { id: newId(), name: name.trim(), calories: Math.round(calories), servingDescription, loggedAt: Date.now() };
-    persist([entry, ...entries]);
+    const entry = addFoodEntry(name, calories, servingDescription);
+    if (entry) setEntries(getAllEntries());
   };
 
   const removeEntry = (id: string) => {
-    persist(entries.filter((e) => e.id !== id));
+    removeFoodEntry(id);
+    setEntries(getAllEntries());
   };
 
   const runSearch = async () => {
