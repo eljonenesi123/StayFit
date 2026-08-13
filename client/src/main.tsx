@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./styles/global.css";
 import App from "./App";
 import { AuthProvider } from "./features/auth/AuthContext";
+import PwaUpdateToast from "./components/PwaUpdateToast";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -11,6 +12,7 @@ createRoot(document.getElementById("root")!).render(
       <AuthProvider>
         <App />
       </AuthProvider>
+      <PwaUpdateToast />
     </BrowserRouter>
   </StrictMode>
 );
