@@ -7,6 +7,14 @@
   padding: var(--space-6) var(--space-5);
   max-width: 420px;
   margin: 0 auto;
+  /* #root is a flex column and this is its only item. A wide, non-shrinking
+     vw-sized descendant (the blob) was making .welcome's auto/stretch width
+     resolve larger than the viewport instead of clamping to it, causing
+     horizontal overflow — an explicit width against #root's definite size
+     removes that ambiguity. min-width:0 belt-and-braces against the same
+     class of flex auto-sizing overflow. */
+  width: 100%;
+  min-width: 0;
 }
 
 /* One block (circle + animation + heading + subtext + CTA) centered as a
@@ -29,26 +37,31 @@
 
 .welcome__animation-wrap {
   position: relative;
-  width: min(78vw, 300px);
-  height: min(78vw, 300px);
+  /* ~20% bigger than the original min(78vw, 300px) footprint. */
+  width: min(92vw, 362px);
+  height: min(92vw, 362px);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
 .welcome__blob {
   position: absolute;
   inset: 0;
-  background: var(--accent-tint-pale);
-  border-radius: 42% 58% 55% 45% / 45% 45% 55% 55%;
-  animation: welcome-blob-breathe 3.6s ease-in-out infinite;
-  transform-origin: center;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: welcome-blob-float 5.5s ease-in-out infinite;
 }
 
-@keyframes welcome-blob-breathe {
-  0%, 100% { transform: scale(0.98); }
-  50% { transform: scale(1.02); }
+/* Asymmetric waypoints (rather than a single up/down ping-pong) so the
+   drift reads as organic wandering, not a mechanical bounce. */
+@keyframes welcome-blob-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(10px, -14px) scale(1.02); }
+  50% { transform: translate(-5px, -27px) scale(0.98); }
+  75% { transform: translate(-12px, -9px) scale(1.01); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -59,8 +72,10 @@
 
 .welcome__animation {
   position: relative;
-  width: min(62vw, 240px);
-  height: min(62vw, 240px);
+  /* Scaled up with the blob so the crunch animation keeps the same
+     proportion inside it, rather than looking small in a bigger blob. */
+  width: min(73vw, 290px);
+  height: min(73vw, 290px);
 }
 
 .welcome__title {
