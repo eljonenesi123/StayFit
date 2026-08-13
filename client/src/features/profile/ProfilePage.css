@@ -1,5 +1,5 @@
-.profile-page__header {
-  margin-top: var(--space-6);
+.profile-page__stack {
+  position: relative;
 }
 
 .profile-page__saved {
@@ -15,4 +15,30 @@
   width: 100%;
   min-height: 56px;
   font-size: var(--step-md);
+}
+
+.profile-page__logout {
+  width: 100%;
+  color: var(--muted);
+  margin-top: var(--space-2);
+}
+
+.profile-page__settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.profile-page__setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.profile-page__setting-row select {
+  width: auto;
+  min-height: 40px;
+  padding: 0.4rem 0.6rem;
 }

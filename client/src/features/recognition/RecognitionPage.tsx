@@ -139,7 +139,7 @@ export default function RecognitionPage() {
             <button
               type="button"
               className="btn btn-secondary"
-              onClick={() => navigate("/library", { state: { openExerciseId: matchedExercise.id } })}
+              onClick={() => navigate("/workouts", { state: { segment: "library", openExerciseId: matchedExercise.id } })}
             >
               View "{matchedExercise.name}" in library
             </button>

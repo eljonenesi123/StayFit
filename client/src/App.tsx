@@ -8,13 +8,12 @@ import AuthChoicePage from "./features/auth/AuthChoicePage";
 import SignUpPage from "./features/auth/SignUpPage";
 import LoginPage from "./features/auth/LoginPage";
 import WelcomeBackPage from "./features/auth/WelcomeBackPage";
-import DashboardPage from "./features/dashboard/DashboardPage";
+import HomePage from "./features/home/HomePage";
 import OnboardingPage from "./features/profile/OnboardingPage";
 import ProfilePage from "./features/profile/ProfilePage";
-import RoundTimerPage from "./features/timer/RoundTimerPage";
-import ExerciseLibraryPage from "./features/exercises/ExerciseLibraryPage";
-import PlanGeneratorPage from "./features/plans/PlanGeneratorPage";
-import CalorieCalculatorPage from "./features/calories/CalorieCalculatorPage";
+import WorkoutsPage from "./features/workouts/WorkoutsPage";
+import MealsPage from "./features/meals/MealsPage";
+import ProgressPage from "./features/progress/ProgressPage";
 
 export default function App() {
   return (
@@ -28,18 +27,15 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
 
         <Route element={<RequireAuth />}>
-          <Route path="/home" element={<DashboardPage />} />
           <Route path="/welcome-back" element={<WelcomeBackPage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
 
           <Route element={<AppShell />}>
-            <Route path="/timer" element={<RoundTimerPage />} />
-            <Route path="/library" element={<ExerciseLibraryPage />} />
-            {/* "/scan" (photo recognition, features/recognition/) is temporarily disabled —
-                see the comment in components/BottomNav.tsx for why and how to re-enable. */}
-            <Route path="/plans" element={<PlanGeneratorPage />} />
-            <Route path="/calories" element={<CalorieCalculatorPage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/workouts" element={<WorkoutsPage />} />
+            <Route path="/meals" element={<MealsPage />} />
+            <Route path="/progress" element={<ProgressPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
         </Route>
       </Routes>

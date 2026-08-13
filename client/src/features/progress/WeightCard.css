@@ -5,6 +5,32 @@
   margin-bottom: var(--space-1);
 }
 
+.weight-card__header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.weight-card__edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--line);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease-standard), color var(--dur-base) var(--ease-standard);
+}
+
+.weight-card__edit:hover {
+  background: var(--accent-tint);
+  color: var(--accent-strong);
+}
+
 .weight-card__delta {
   font-size: var(--step-xs);
   font-weight: 700;
@@ -65,4 +91,39 @@
   font-size: var(--step-xs);
   color: var(--muted);
   margin: var(--space-3) 0 0;
+}
+
+.weight-card--loading {
+  height: 220px;
+}
+
+.weight-card--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+}
+
+.weight-card--empty .weight-card__header {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.weight-card__empty-illustration {
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+  margin: var(--space-2) 0;
+}
+
+.weight-card__empty-text {
+  color: var(--ink-soft);
+  font-size: var(--step-sm);
+  margin: 0;
+}
+
+.weight-card__log-btn {
+  margin-top: var(--space-2);
+  width: 100%;
 }

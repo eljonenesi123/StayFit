@@ -4,6 +4,7 @@ import { EXERCISES } from "./data";
 import type { Exercise, MuscleGroup, Equipment } from "./types";
 import ExerciseCard from "./ExerciseCard";
 import ExerciseDetailSheet from "./ExerciseDetailSheet";
+import { CATEGORIES, CATEGORY_LABELS, MUSCLE_GROUP_TO_CATEGORY, type WorkoutCategory } from "../workouts/categories";
 import "./ExerciseLibraryPage.css";
 
 const MUSCLE_GROUPS: MuscleGroup[] = [
@@ -31,6 +32,7 @@ const EQUIPMENT: Equipment[] = [
 
 export default function ExerciseLibraryPage() {
   const [query, setQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState<WorkoutCategory | null>(null);
   const [muscleFilter, setMuscleFilter] = useState<MuscleGroup | null>(null);
   const [equipmentFilter, setEquipmentFilter] = useState<Equipment | null>(null);
   const [selected, setSelected] = useState<Exercise | null>(null);
@@ -48,20 +50,20 @@ export default function ExerciseLibraryPage() {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return EXERCISES.filter((ex) => {
+      if (categoryFilter && MUSCLE_GROUP_TO_CATEGORY[ex.muscleGroup] !== categoryFilter) return false;
       if (muscleFilter && ex.muscleGroup !== muscleFilter) return false;
       if (equipmentFilter && !ex.equipment.includes(equipmentFilter)) return false;
       if (q && !ex.name.toLowerCase().includes(q) && !ex.muscleGroup.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [query, muscleFilter, equipmentFilter]);
+  }, [query, categoryFilter, muscleFilter, equipmentFilter]);
 
-  const hasActiveFilters = muscleFilter || equipmentFilter || query;
+  const hasActiveFilters = categoryFilter || muscleFilter || equipmentFilter || query;
 
   return (
-    <div className="page">
+    <div className="exercise-library">
       <div className="page-header">
-        <h1>Exercise Library</h1>
-        <p>Search or filter by muscle group and equipment. Tap a card for a demo video and form cues.</p>
+        <p>Search or filter by category, muscle group, and equipment. Tap a card for a demo video and form cues.</p>
       </div>
 
       <input
@@ -72,6 +74,23 @@ export default function ExerciseLibraryPage() {
         aria-label="Search exercises"
         className="exercise-library__search"
       />
+
+      <div className="exercise-library__filter-group">
+        <span className="exercise-library__filter-label">Category</span>
+        <div className="exercise-library__chips">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              className="chip"
+              data-active={categoryFilter === cat}
+              onClick={() => setCategoryFilter(categoryFilter === cat ? null : cat)}
+            >
+              {CATEGORY_LABELS[cat]}
+            </button>
+          ))}
+        </div>
+      </div>
 
       <div className="exercise-library__filter-group">
         <span className="exercise-library__filter-label">Muscle group</span>
@@ -117,6 +136,7 @@ export default function ExerciseLibraryPage() {
             className="btn btn-ghost"
             onClick={() => {
               setQuery("");
+              setCategoryFilter(null);
               setMuscleFilter(null);
               setEquipmentFilter(null);
             }}

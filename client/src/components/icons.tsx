@@ -18,6 +18,15 @@ const base = {
   strokeLinejoin: "round" as const,
 };
 
+export function HomeIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 11.5L12 4l8 7.5" />
+      <path d="M6 10v9a1 1 0 0 0 1 1h3v-6h4v6h3a1 1 0 0 0 1-1v-9" />
+    </svg>
+  );
+}
+
 export function TimerIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>
@@ -182,6 +191,24 @@ export function ChevronRightIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>
       <path d="M9 5l7 7-7 7" />
+    </svg>
+  );
+}
+
+export function PencilIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 20l1-4L16.5 4.5a2 2 0 0 1 2.83 0l.17.17a2 2 0 0 1 0 2.83L8 19l-4 1z" />
+      <path d="M14.5 6.5l3 3" />
+    </svg>
+  );
+}
+
+export function BellIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M6 10.5a6 6 0 0 1 12 0c0 3.2.8 5 1.6 6H4.4c.8-1 1.6-2.8 1.6-6z" />
+      <path d="M10 19.5a2 2 0 0 0 4 0" />
     </svg>
   );
 }

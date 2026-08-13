@@ -55,9 +55,8 @@ export default function PlanGeneratorPage() {
   };
 
   return (
-    <div className="page">
+    <div className="plan-generator-page">
       <div className="page-header">
-        <h1>AI Plans</h1>
         <p>Tell us your goals and we'll build a personalized workout and meal plan.</p>
       </div>
 

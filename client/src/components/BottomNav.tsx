@@ -1,17 +1,19 @@
 import { NavLink } from "react-router-dom";
-import { TimerIcon, LibraryIcon, PlanIcon, CalorieIcon } from "./icons";
+import { HomeIcon, LibraryIcon, CalorieIcon, ScaleIcon, PersonIcon } from "./icons";
 import "./BottomNav.css";
 
-// "Scan" (photo exercise recognition) is temporarily pulled from the nav —
-// it runs on the paid Anthropic API and the user doesn't want that cost
-// live right now. The route and RecognitionPage are untouched; re-add a
-// { to: "/scan", label: "Scan", icon: ScanIcon, end: false } entry (and the
-// ScanIcon import) to bring it back.
+// "Scan" (photo exercise recognition) is pulled from the nav — it runs on
+// the paid Anthropic API and the user doesn't want that cost live right
+// now. The route and RecognitionPage are untouched; re-add a
+// { to: "/workouts", state: { segment: "library" }... } style entry (see
+// RecognitionPage.tsx's own "View in library" button for the pattern) to
+// bring it back as, e.g., a Workouts sub-action.
 const tabs = [
-  { to: "/timer", label: "Timer", icon: TimerIcon, end: true },
-  { to: "/library", label: "Library", icon: LibraryIcon, end: false },
-  { to: "/plans", label: "Plans", icon: PlanIcon, end: false },
-  { to: "/calories", label: "Calories", icon: CalorieIcon, end: false },
+  { to: "/home", label: "Home", icon: HomeIcon, end: true },
+  { to: "/workouts", label: "Workouts", icon: LibraryIcon, end: false },
+  { to: "/meals", label: "Meals", icon: CalorieIcon, end: false },
+  { to: "/progress", label: "Progress", icon: ScaleIcon, end: false },
+  { to: "/profile", label: "Profile", icon: PersonIcon, end: false },
 ];
 
 export default function BottomNav() {
