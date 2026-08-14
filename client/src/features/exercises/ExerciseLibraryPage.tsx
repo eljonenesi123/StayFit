@@ -4,6 +4,7 @@ import { EXERCISES } from "./data";
 import type { Exercise, MuscleGroup, Equipment } from "./types";
 import ExerciseCard from "./ExerciseCard";
 import ExerciseDetailSheet from "./ExerciseDetailSheet";
+import CategoryIcon from "./CategoryIcon";
 import { CATEGORIES, CATEGORY_LABELS, MUSCLE_GROUP_TO_CATEGORY, type WorkoutCategory } from "../workouts/categories";
 import { ChevronDownIcon } from "../../components/icons";
 import "./ExerciseLibraryPage.css";
@@ -63,6 +64,18 @@ export default function ExerciseLibraryPage() {
   const secondaryActiveCount = (muscleFilter ? 1 : 0) + (equipmentFilter ? 1 : 0);
   const hasActiveFilters = categoryFilter || muscleFilter || equipmentFilter || query;
 
+  // With no Category selected, group the flat results under sticky per-muscle-group
+  // headers so browsing the full library feels organized instead of a 26-card dump.
+  // Once a Category is picked, everything in `filtered` already belongs to it, so a
+  // single flat grid is clearer than headers for only part of the muscle groups.
+  const groups = useMemo(() => {
+    if (categoryFilter) return null;
+    return MUSCLE_GROUPS.map((mg) => ({
+      muscleGroup: mg,
+      exercises: filtered.filter((ex) => ex.muscleGroup === mg),
+    })).filter((g) => g.exercises.length > 0);
+  }, [filtered, categoryFilter]);
+
   return (
     <div className="exercise-library">
       <div className="page-header">
@@ -89,6 +102,7 @@ export default function ExerciseLibraryPage() {
               data-active={categoryFilter === cat}
               onClick={() => setCategoryFilter(categoryFilter === cat ? null : cat)}
             >
+              <CategoryIcon category={cat} aria-hidden="true" />
               {CATEGORY_LABELS[cat]}
             </button>
           ))}
@@ -175,6 +189,22 @@ export default function ExerciseLibraryPage() {
       {filtered.length === 0 ? (
         <div className="empty-state">
           <p>No exercises match those filters. Try clearing one.</p>
+        </div>
+      ) : groups ? (
+        <div className="exercise-library__groups">
+          {groups.map((group) => (
+            <section key={group.muscleGroup} className="exercise-library__group">
+              <h2 className="exercise-library__group-header">
+                {group.muscleGroup}
+                <span className="exercise-library__group-count">{group.exercises.length}</span>
+              </h2>
+              <div className="exercise-library__grid">
+                {group.exercises.map((ex) => (
+                  <ExerciseCard key={ex.id} exercise={ex} onSelect={() => setSelected(ex)} />
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
       ) : (
         <div className="exercise-library__grid">

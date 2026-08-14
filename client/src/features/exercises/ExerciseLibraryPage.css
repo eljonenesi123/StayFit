@@ -35,6 +35,10 @@
   border: 1.5px solid var(--accent-tint-strong);
 }
 
+.chip-category svg {
+  flex-shrink: 0;
+}
+
 .chip-category[data-active="true"] {
   background: var(--accent);
   color: #fff;
@@ -123,4 +127,34 @@
   .exercise-library__grid {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+.exercise-library__groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.exercise-library__group-header {
+  position: sticky;
+  top: var(--topbar-height);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--paper);
+  margin: 0 0 var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-body);
+  font-size: var(--step-sm);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.exercise-library__group-count {
+  font-size: var(--step-xs);
+  font-weight: 600;
+  color: var(--muted);
 }
